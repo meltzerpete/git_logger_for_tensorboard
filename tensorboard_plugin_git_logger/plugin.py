@@ -24,7 +24,7 @@ from tensorboard.plugins import base_plugin
 import werkzeug
 from werkzeug import wrappers
 
-from tensorboard_plugin_example import metadata
+from tensorboard_plugin_git_logger import metadata
 
 
 class ExamplePlugin(base_plugin.TBPlugin):

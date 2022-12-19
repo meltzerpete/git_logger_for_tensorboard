@@ -18,16 +18,16 @@ import setuptools
 
 
 setuptools.setup(
-    name="tensorboard_plugin_example",
+    name="tensorboard_plugin_git_logger",
     version="0.1.0",
     description="Sample TensorBoard plugin.",
-    packages=["tensorboard_plugin_example"],
+    packages=["tensorboard_plugin_git_logger"],
     package_data={
-        "tensorboard_plugin_example": ["static/**"],
+        "tensorboard_plugin_git_logger": ["static/**"],
     },
     entry_points={
         "tensorboard_plugins": [
-            "example_basic = tensorboard_plugin_example.plugin:ExamplePlugin",
+            "git_logger = tensorboard_plugin_git_logger.plugin:ExamplePlugin",
         ],
     },
     install_requires=["tensorboard"],

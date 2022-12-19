@@ -12,27 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
-"""Demo code."""
-from tensorflow import summary
-
-from tensorboard_plugin_example import summary_v2
+"""Plugin-specific global metadata."""
 
 
-def main():
-    writer = summary.create_file_writer("demo_logs")
-    with writer.as_default():
-        summary_v2.greeting(
-            "guestbook",
-            "Alice",
-            step=0,
-            description="Sign your name!",
-        )
-        summary_v2.greeting(
-            "guestbook", "Bob", step=1
-        )  # no need for `description`
-        summary_v2.greeting("guestbook", "Cheryl", step=2)
-        summary_v2.greeting("more_names", "David", step=4)
-
-
-if __name__ == "__main__":
-    main()
+PLUGIN_NAME = "git_logger"

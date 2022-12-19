@@ -18,7 +18,7 @@
 import tensorflow as tf
 from tensorboard.compat.proto import summary_pb2
 
-from tensorboard_plugin_example import metadata
+from tensorboard_plugin_git_logger import metadata
 
 
 def greeting(name, guest, step=None, description=None):
