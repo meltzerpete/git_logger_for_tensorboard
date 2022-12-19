@@ -19,6 +19,7 @@ import tensorflow as tf
 from tensorboard.compat.proto import summary_pb2
 
 from git_logger_for_tensorboard import metadata
+from git_logger_for_tensorboard.code_state import CodeState
 from git_logger_for_tensorboard.git_repo import GitRepo
 
 
@@ -66,12 +67,22 @@ def _create_summary_metadata():
         data_class=summary_pb2.DATA_CLASS_TENSOR,
     )
 
+
 def _create_git_summary():
     repo = GitRepo()
+    patch = None
+    upstream_patch = None
+    if repo.dirty:
+        code_state = CodeState(repo)
+        patch = code_state.patch
+        upstream_patch = code_state.upstream_patch
+
     summary = {
         'branch': repo.branch,
         'last_commit': repo.last_commit,
         'remote_url': repo.remote_url,
-        'last_upstream': str(repo.get_upstream_fork_point())
+        'last_upstream': str(repo.get_upstream_fork_point()),
+        'patch': patch,
+        'upstream_patch': upstream_patch
     }
     return json.dumps(summary)
