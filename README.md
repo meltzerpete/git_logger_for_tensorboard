@@ -10,8 +10,8 @@ In this example, we define a custom summary op `greeting(name, guest)`, use it t
 
 Generate some sample Greeting summaries by running [`demo.py`][demo_py]. Alternatively, to write Greetings from your own Python program, import [`summary_v2.py`][summary_v2_py], create a summary file writer, and call `summary_v2.greeting("very important people", "you", step)`.
 
-[demo_py]: tensorboard_plugin_git_logger/demo.py
-[summary_v2_py]: tensorboard_plugin_git_logger/summary_v2.py
+[demo_py]: git_logger_for_tensorboard/demo.py
+[summary_v2_py]: git_logger_for_tensorboard/git_logger.py
 
 Copy the directory `tensorboard/examples/plugins/example_basic` into a desired folder. In a virtualenv with TensorBoard installed, run:
 
@@ -50,6 +50,9 @@ to unlink the plugin from your virtualenv, after which you can also delete the `
 With pytorch-lightning:
 
 ```python
+from pytorch_lightning.loggers import TensorBoardLogger
+from git_logger import 
+
 tensorboard_logger = TensorBoardLogger(save_dir='lightning_logs',
                                        name='my_experiment')
 git_logger = GitLightningLogger(lightning_tb_logger=tensorboard_logger)
@@ -68,11 +71,11 @@ Without pytorch-lightning:
 ```python
 from tensorflow import summary
 
-from tensorboard_plugin_git_logger import summary_v2
+from git_logger_for_tensorboard import git_logger
 
 # create a SummaryWriter as normal
 writer = summary.create_file_writer("demo_logs")
 with writer.as_default():
     # log an entry
-    summary_v2.greeting()
+    summary_v2.log()
 ```

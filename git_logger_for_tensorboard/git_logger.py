@@ -13,15 +13,16 @@
 # limitations under the License.
 # ==============================================================================
 """Summaries for the example_basic plugin."""
-
+import json
 
 import tensorflow as tf
 from tensorboard.compat.proto import summary_pb2
 
-from tensorboard_plugin_git_logger import metadata
+from git_logger_for_tensorboard import metadata
+from git_logger_for_tensorboard.git_repo import GitRepo
 
 
-def greeting(name, guest, step=None, description=None):
+def log(tag=None, step=None):
     """Write a "greeting" summary.
 
     Arguments:
@@ -43,24 +44,34 @@ def greeting(name, guest, step=None, description=None):
         `tf.summary.experimental.get_step()` is None.
     """
     with tf.summary.experimental.summary_scope(
-        name,
-        "greeting_summary",
-        values=[guest, step],
+            tag,
+            "None",
+            values=['guest', step],
     ) as (tag, _):
         return tf.summary.write(
             tag=tag,
-            tensor=tf.strings.join(["Hello, ", guest, "!"]),
+            tensor=_create_git_summary(),
             step=step,
-            metadata=_create_summary_metadata(description),
+            metadata=_create_summary_metadata(),
         )
 
 
-def _create_summary_metadata(description):
+def _create_summary_metadata():
     return summary_pb2.SummaryMetadata(
-        summary_description=description,
+        summary_description='git logger',
         plugin_data=summary_pb2.SummaryMetadata.PluginData(
             plugin_name=metadata.PLUGIN_NAME,
             content=b"",  # no need for summary-specific metadata
         ),
         data_class=summary_pb2.DATA_CLASS_TENSOR,
     )
+
+def _create_git_summary():
+    repo = GitRepo()
+    summary = {
+        'branch': repo.branch,
+        'last_commit': repo.last_commit,
+        'remote_url': repo.remote_url,
+        'last_upstream': str(repo.get_upstream_fork_point())
+    }
+    return json.dumps(summary)

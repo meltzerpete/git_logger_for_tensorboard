@@ -15,23 +15,13 @@
 """Demo code."""
 from tensorflow import summary
 
-from tensorboard_plugin_git_logger import summary_v2
+from git_logger_for_tensorboard import git_logger
 
 
 def main():
     writer = summary.create_file_writer("demo_logs")
     with writer.as_default():
-        summary_v2.greeting(
-            "guestbook",
-            "Alice",
-            step=0,
-            description="Sign your name!",
-        )
-        summary_v2.greeting(
-            "guestbook", "Bob", step=1
-        )  # no need for `description`
-        summary_v2.greeting("guestbook", "Cheryl", step=2)
-        summary_v2.greeting("more_names", "David", step=4)
+        git_logger.log(tag='train', step=0)
 
 
 if __name__ == "__main__":
