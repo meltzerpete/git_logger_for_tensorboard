@@ -70,12 +70,9 @@ def _create_summary_metadata():
 
 def _create_git_summary():
     repo = GitRepo()
-    patch = None
-    upstream_patch = None
-    if repo.dirty:
-        code_state = CodeState(repo)
-        patch = code_state.patch
-        upstream_patch = code_state.upstream_patch
+    code_state = CodeState(repo)
+    patch = code_state.patch
+    upstream_patch = code_state.upstream_patch
 
     summary = {
         'branch': repo.branch,
