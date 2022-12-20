@@ -11,6 +11,7 @@
 With pytorch-lightning:
 
 ```python
+import pytorchlightning as pl
 from pytorch_lightning.loggers import TensorBoardLogger
 from git_logger import
 
@@ -29,6 +30,17 @@ trainer.test()
 
 Without pytorch-lightning:
 
+```python
+from torch.utils.tensorboard import SummaryWriter
+
+from git_logger_for_tensorboard.git_logger_pt import GitLogger
+
+
+summary_writer = SummaryWriter(log_dir='demo6')
+GitLogger(summary_writer).log('train')
+```
+
+With tensorflow:
 ```python
 from tensorflow import summary
 from git_logger_for_tensorboard import git_logger
