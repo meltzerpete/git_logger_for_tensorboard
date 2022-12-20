@@ -19,7 +19,7 @@ from git_logger_for_tensorboard.git_logger_pt import GitLogger
 
 
 def main():
-    summary_writer = SummaryWriter(log_dir='demo6')
+    summary_writer = SummaryWriter(log_dir='demo7')
     GitLogger(summary_writer).log('train')
 
 
