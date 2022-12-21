@@ -33,8 +33,8 @@ def _display(run, data):
     print('\t- remote_url:', data['remote_url'])
     print('\t- last_commit:', data['last_commit'])
     print('\t- last_upstream:', data['last_upstream'])
-    print('\t- patch:', data['patch'] is None)
-    print('\t- upstream_patch:', data['upstream_patch'] is None)
+    print('\t- patch:', data['patch'] is not None)
+    print('\t- upstream_patch:', data['upstream_patch'] is not None)
 
 
 def _display_patch(data):
