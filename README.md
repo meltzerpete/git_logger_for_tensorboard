@@ -1,4 +1,13 @@
 # Git Logger for Tensorboard with Pytorch
+          
+## Contents
+
+- [Features](#Features)
+- [Dependencies](#Dependencies)
+- [Installation](#Installation)
+- [Usage](#Usage)
+  - [Logging](#Logging)
+  - [Viewing the Logs](#Viewing-the-Logs)
 
 ## Features
 
