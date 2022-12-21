@@ -29,6 +29,9 @@ setuptools.setup(
         "tensorboard_plugins": [
             "git_logger = git_logger_for_tensorboard.plugin:ExamplePlugin",
         ],
+        "console_scripts": [
+            "git_logger_view = git_logger_for_tensorboard.view:main"
+        ]
     },
     install_requires=["GitPython>=1.0.0"],
 )
