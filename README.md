@@ -78,10 +78,10 @@ GitLogger(summary_writer).log('train')  # all git info/patches are logged to the
 
 Simply go to the `GIT_LOGGER` tab in tensorboard.
 
-![](https://github.com/meltzerpete/git_logger_for_tensorboard/blob/main/img/Screenshot%202022-12-21%20at%2014.56.48.png)
-
 Clicking a repository will take you there in the browser, clicking a commit hash will copy it to clipboard, and clicking
 a patch will download it as a file.
+
+![](https://github.com/meltzerpete/git_logger_for_tensorboard/blob/main/img/Screenshot%202022-12-21%20at%2014.56.48.png)
 
 #### If tensorflow is not installed
 
