@@ -98,8 +98,8 @@ Run: lightning_logs/my_model/version_0
         - remote_url: git@github.com:meltzerpete/git_logger_for_tensorboard.git
         - last_commit: b7f80b13961c5f66b4c7ca088457c3c979651a1d
         - last_upstream: b7f80b13961c5f66b4c7ca088457c3c979651a1d
-        - patch: False
-        - upstream_patch: True
+        - patch: True
+        - upstream_patch: False
 
 ...
 ```
