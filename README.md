@@ -100,12 +100,12 @@ and you can view these as follows:
 
 ```shell
 $ git_logger_view --patch lightning_logs/my_model/version_0
-# or --upstream_patch
+#              or --upstream_patch
 ```
 
 or save them to file with:
 
 ```shell
 $ git_logger_view --patch lightning_logs/my_model/version_0 > my_diff.patch
-# or --upstream_patch
+#              or --upstream_patch
 ```
