@@ -54,7 +54,7 @@ tensorboard_logger = TensorBoardLogger(save_dir='lightning_logs',
                                        name='my_experiment')
 tb_logger = TensorBoardLogger(save_dir='lightning_logs',
                               name='my_model')
-GitLightningLogger(tb_logger).log('train')  # all git info/patches are logged to the current lightning run dir
+GitLightningLogger(tb_logger).log()  # all git info/patches are logged to the current lightning run dir
 
 trainer = pl.Trainer(*usual_args,
                      logger=tensorboard_logger)
@@ -69,7 +69,7 @@ from torch.utils.tensorboard import SummaryWriter
 from git_logger_for_tensorboard.git_logger import GitLogger
 
 summary_writer = SummaryWriter(log_dir='demo6')
-GitLogger(summary_writer).log('train')  # all git info/patches are logged to the log_dir
+GitLogger(summary_writer).log()  # all git info/patches are logged to the log_dir
 
 ...
 ```
