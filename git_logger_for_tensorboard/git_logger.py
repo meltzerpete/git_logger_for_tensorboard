@@ -31,7 +31,7 @@ class GitLogger:
     def __init__(self, summary_writer: SummaryWriter):
         self.summary_writer = summary_writer
 
-    def log(self, tag):
+    def log(self):
         writer = self.summary_writer._get_file_writer()
         tensor = TensorProto(
             dtype="DT_STRING",
@@ -39,7 +39,7 @@ class GitLogger:
             tensor_shape=TensorShapeProto(dim=[TensorShapeProto.Dim(size=1)]),
         )
         summary = Summary(
-            value=[Summary.Value(tag=tag, metadata=_create_summary_metadata(), tensor=tensor)]
+            value=[Summary.Value(tag='git_logger', metadata=_create_summary_metadata(), tensor=tensor)]
         )
         writer.add_summary(summary)
 
