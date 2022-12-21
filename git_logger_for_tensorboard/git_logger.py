@@ -15,50 +15,36 @@
 """Summaries for the example_basic plugin."""
 import json
 
-import tensorflow as tf
 from tensorboard.compat.proto import summary_pb2
+from tensorboard.compat.proto.summary_pb2 import SummaryMetadata, Summary
+from tensorboard.compat.proto.tensor_pb2 import TensorProto
+from tensorboard.compat.proto.tensor_shape_pb2 import TensorShapeProto
+from torch.utils.tensorboard import SummaryWriter
 
 from git_logger_for_tensorboard import metadata
 from git_logger_for_tensorboard.code_state import CodeState
 from git_logger_for_tensorboard.git_repo import GitRepo
 
 
-def log(tag=None, step=None):
-    """Write a "greeting" summary.
+class GitLogger:
+    def __init__(self, summary_writer: SummaryWriter):
+        self.summary_writer = summary_writer
 
-    Arguments:
-      name: A name for this summary. The summary tag used for TensorBoard will
-        be this name prefixed by any active name scopes.
-      guest: A rank-0 string `Tensor`.
-      step: Explicit `int64`-castable monotonic step value for this summary. If
-        omitted, this defaults to `tf.summary.experimental.get_step()`, which must
-        not be None.
-      description: Optional long-form description for this summary, as a
-        constant `str`. Markdown is supported. Defaults to empty.
-
-    Returns:
-      True on success, or false if no summary was written because no default
-      summary writer was available.
-
-    Raises:
-      ValueError: if a default writer exists, but no step was provided and
-        `tf.summary.experimental.get_step()` is None.
-    """
-    with tf.summary.experimental.summary_scope(
-            tag,
-            "None",
-            values=['guest', step],
-    ) as (tag, _):
-        return tf.summary.write(
-            tag=tag,
-            tensor=_create_git_summary(),
-            step=step,
-            metadata=_create_summary_metadata(),
+    def log(self, tag):
+        writer = self.summary_writer._get_file_writer()
+        tensor = TensorProto(
+            dtype="DT_STRING",
+            string_val=[_create_git_summary().encode(encoding="utf_8")],
+            tensor_shape=TensorShapeProto(dim=[TensorShapeProto.Dim(size=1)]),
         )
+        summary = Summary(
+            value=[Summary.Value(tag=tag, metadata=_create_summary_metadata(), tensor=tensor)]
+        )
+        writer.add_summary(summary)
 
 
 def _create_summary_metadata():
-    return summary_pb2.SummaryMetadata(
+    return SummaryMetadata(
         summary_description='git logger',
         plugin_data=summary_pb2.SummaryMetadata.PluginData(
             plugin_name=metadata.PLUGIN_NAME,
