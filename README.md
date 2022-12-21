@@ -13,14 +13,18 @@ Requires:
 - python + pip
 - tensorboard
 - pytorch
-- OPTIONAL for display in tensorboard: tensorflow (all custom plugins require full tensorflow installation to work with tensorboard)
+- OPTIONAL: tensorflow
+
+Note: **Full tensorflow installation is required to view logs in tensorboard.** This is currently a requirement for
+all custom plugins. The plugin will still log without tensorflow, and logs can be viewed in the terminal (see below).
 
 ## Installation
 
 Ensure you have the above dependencies, then run:
 
-`$ pip install git+ssh://git@github.com/meltzerpete/git_logger_for_tensorboard.git#egg=git_logger_for_tensorboard&subdirectory=git_logger_for_tensorboard`
-git+ssh://git@git.autodesk.com/meltzep/groverdenoise.git#egg=groverdenoise&subdirectory=src
+```shell
+pip install git+ssh://git@github.com/meltzerpete/git_logger_for_tensorboard.git#egg=git_logger_for_tensorboard
+````
 
 ## Usage
 
@@ -57,7 +61,7 @@ GitLogger(summary_writer).log('train')  # all git info/patches are logged to the
 ...
 ```
 
-## Viewing the Logs
+### Viewing the Logs
 
 If tensorflow is installed, simply go to the `GIT_LOGGER` tab in tensorboard.
 
