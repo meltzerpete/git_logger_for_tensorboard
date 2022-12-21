@@ -20,7 +20,7 @@ import setuptools
 setuptools.setup(
     name="git_logger_for_tensorboard",
     version="0.1.0",
-    description="Sample TensorBoard plugin.",
+    description="Automatically log git repo info and patches to tensorboard.",
     packages=["git_logger_for_tensorboard"],
     package_data={
         "git_logger_for_tensorboard": ["static/**"],
