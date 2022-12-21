@@ -67,7 +67,7 @@ GitLogger(summary_writer).log('train')  # all git info/patches are logged to the
 
 If tensorflow is installed, simply go to the `GIT_LOGGER` tab in tensorboard.
 
-![](img/Screenshot 2022-12-21 at 14.56.48.png)
+![](https://github.com/meltzerpete/git_logger_for_tensorboard/blob/main/img/Screenshot%202022-12-21%20at%2014.56.48.png)
 
 If tensorflow is not installed, you can view the logs in the terminal by running (ensure you have restarted your shell
 after installation from pip):
