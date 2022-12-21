@@ -1,5 +1,7 @@
 # Git Logger for Tensorboard with Pytorch
-          
+       
+![](https://github.com/meltzerpete/git_logger_for_tensorboard/blob/main/img/Screenshot%202022-12-21%20at%2014.56.48.png)
+   
 ## Contents
 
 - [Features](#Features)
@@ -76,16 +78,14 @@ GitLogger(summary_writer).log('train')  # all git info/patches are logged to the
 
 #### If tensorflow is installed
 
-Simply go to the `GIT_LOGGER` tab in tensorboard.
+Simply go to the `GIT_LOGGER` tab in tensorboard (see image at top of page).
 
 Clicking a repository will take you there in the browser, clicking a commit hash will copy it to clipboard, and clicking
 a patch will download it as a file.
 
-![](https://github.com/meltzerpete/git_logger_for_tensorboard/blob/main/img/Screenshot%202022-12-21%20at%2014.56.48.png)
-
 #### If tensorflow is not installed
 
-You can view the logs in the terminal by running (ensure you have restarted your shell
+You can view the logs in the terminal by running the following (ensure you have restarted your shell
 after installation from pip):
 
 ```shell
