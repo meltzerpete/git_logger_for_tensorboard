@@ -39,6 +39,8 @@ Ensure you have the above dependencies, then run:
 pip install git+ssh://git@github.com/meltzerpete/git_logger_for_tensorboard.git#egg=git_logger_for_tensorboard
 ````
 
+You will need to restart your terminal to use the `git_logger_view` command.
+
 ## Usage
 
 ### Logging
