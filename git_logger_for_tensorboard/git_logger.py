@@ -15,6 +15,7 @@
 """Summaries for the example_basic plugin."""
 import json
 
+from pytorch_lightning.loggers import TensorBoardLogger
 from tensorboard.compat.proto import summary_pb2
 from tensorboard.compat.proto.summary_pb2 import SummaryMetadata, Summary
 from tensorboard.compat.proto.tensor_pb2 import TensorProto
@@ -41,6 +42,11 @@ class GitLogger:
             value=[Summary.Value(tag=tag, metadata=_create_summary_metadata(), tensor=tensor)]
         )
         writer.add_summary(summary)
+
+
+class GitLightningLogger(GitLogger):
+    def __init__(self, lightning_tb_logger: TensorBoardLogger):
+        super(GitLightningLogger, self).__init__(SummaryWriter(log_dir=lightning_tb_logger.log_dir))
 
 
 def _create_summary_metadata():

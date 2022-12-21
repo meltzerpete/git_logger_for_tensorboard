@@ -15,20 +15,20 @@
 """Summaries for the example_basic plugin."""
 import json
 
-from tensorboard.compat.proto import summary_pb2
-from tensorboard.compat.proto.summary_pb2 import SummaryMetadata, Summary
-from tensorboard.compat.proto.tensor_pb2 import TensorProto
-from tensorboard.compat.proto.tensor_shape_pb2 import TensorShapeProto
-from torch.utils.tensorboard import SummaryWriter
+from pytorch_lightning.loggers import TensorBoardLogger
+from tensorboardX.proto import summary_pb2
+from tensorboardX.proto.summary_pb2 import Summary, SummaryMetadata
+from tensorboardX.proto.tensor_pb2 import TensorProto
+from tensorboardX.proto.tensor_shape_pb2 import TensorShapeProto
 
 from git_logger_for_tensorboard import metadata
 from git_logger_for_tensorboard.code_state import CodeState
 from git_logger_for_tensorboard.git_repo import GitRepo
 
 
-class GitLogger:
-    def __init__(self, summary_writer: SummaryWriter):
-        self.summary_writer = summary_writer
+class GitLoggerLightning:
+    def __init__(self, summary_writer: TensorBoardLogger):
+        self.summary_writer = summary_writer.experiment
 
     def log(self, tag):
         writer = self.summary_writer._get_file_writer()
@@ -45,12 +45,10 @@ class GitLogger:
 
 def _create_summary_metadata():
     return SummaryMetadata(
-        summary_description='git logger',
-        plugin_data=summary_pb2.SummaryMetadata.PluginData(
+        plugin_data=SummaryMetadata.PluginData(
             plugin_name=metadata.PLUGIN_NAME,
             content=b"",  # no need for summary-specific metadata
-        ),
-        data_class=summary_pb2.DATA_CLASS_TENSOR,
+        )
     )
 
 

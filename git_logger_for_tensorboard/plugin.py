@@ -73,6 +73,10 @@ class ExamplePlugin(base_plugin.TBPlugin):
         mapping = self.data_provider.list_tensors(
             ctx, experiment_id=experiment, plugin_name=metadata.PLUGIN_NAME
         )
+        print(experiment)
+        print(metadata.PLUGIN_NAME)
+        print(request)
+        print(mapping)
 
         result = {run: {} for run in mapping}
         for (run, tag_to_timeseries) in mapping.items():

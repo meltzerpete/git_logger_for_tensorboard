@@ -13,15 +13,20 @@
 # limitations under the License.
 # ==============================================================================
 """Demo code."""
-from tensorflow import summary
+from pytorch_lightning.loggers import TensorBoardLogger
 
-from git_logger_for_tensorboard import git_logger
+from git_logger_for_tensorboard.git_logger import GitLightningLogger
 
 
 def main():
-    writer = summary.create_file_writer("demo_logs")
-    with writer.as_default():
-        git_logger.log(tag='train', step=0)
+    summary_writer = SummaryWriter(log_dir='demo_logs')
+    GitLogger(summary_writer).log('train')
+
+    tb_logger = TensorBoardLogger(save_dir='lightning_logs',
+                                  name='my_model')
+    GitLightningLogger(tb_logger).log('test')
+
+    tb_logger.experiment.add_scalar('my_scalar', 7)
 
 
 if __name__ == "__main__":
